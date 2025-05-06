@@ -1,10 +1,22 @@
 package miniprojet;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.text.Normalizer;
 //removes uppercase and removes special caracters
 public class CleanName implements Praitraiteur{
 
     public List<Nom> traiter(List<Nom> noms){
-        return null; //liste_noms_traitee;
+        List<Nom> liste_noms_traitee = new ArrayList<>();
+        for (Nom nom : noms) {
+            String valeur = nom.getValeur();
+            String normalized = Normalizer.normalize(valeur, Normalizer.Form.NFD)
+                                          .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+            String cleaned = normalized.replaceAll("[A-Z\\W_]", "");
+            nom.setValeur(cleaned);
+            liste_noms_traitee.add(nom);
+        }
+        
+        return liste_noms_traitee;
       }
 }
