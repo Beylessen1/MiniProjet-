@@ -10,6 +10,9 @@ public class Nom {
 		this.id=id;
 	}
 
+	/*public Boolean equals(Object o){
+		this.nom.equals(o.)
+	}*/ //nzidha??
 	public String getNom() {
 		return nom;
 	}
