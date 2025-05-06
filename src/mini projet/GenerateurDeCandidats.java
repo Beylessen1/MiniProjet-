@@ -3,6 +3,6 @@ import java.util.*;
 
 public interface GenerateurDeCandidats {
 
-		public List<Nom> genererCandidats(List<Nom> liste1, List<Nom> liste2) ;
+		public List<Nom> genererCandidats(Nom nom, List<Nom> liste1);
 		
 }
