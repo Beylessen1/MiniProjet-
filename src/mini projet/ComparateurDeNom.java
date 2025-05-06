@@ -1,0 +1,5 @@
+package miniprojet;
+
+public interface ComparateurDeNom {
+	 public double Comparer(Nom nom1,Nom nom2 );
+}
