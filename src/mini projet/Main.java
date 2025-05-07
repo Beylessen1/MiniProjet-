@@ -4,45 +4,33 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        List<Nom> liste = List.of(
+            new Nom("Ahmed"),
+            new Nom("Ahmad"),
+            new Nom("Ahmet"),
+            new Nom("Hamed"),
+            new Nom("Mohamed"),
+            new Nom("Aymen")
+        );
+        Nom nomRecherche = new Nom("Ahmad");
+
+        Praitraiteur nettoyeur = new CleanName();
+        GenerateurDeCandidats generateur = new Generateurbasesurlongeur();
+        ComparateurDeNom comparateur = new ComparateurExacte();  // fixed spelling
+        Selectionneur selectionneur = new SelectionneurAvecSeuil(0.8);
+
         MoteurDeRecherche moteur = new MoteurDeRecherche(
-            new CleanName(),
-            new Generateurbasesurlongueur(),
-            new ComparateurExacte(),
-            new SelectionneurAvecSeuil(1.0)
+            nettoyeur,
+            generateur,
+            comparateur,
+            selectionneur
         );
 
-       
-        List<Nom> liste1 = List.of(
-            new Nom("Ali Ben Salah"),
-            new Nom("Zahra Bouzid"),
-            new Nom("Khaled Trabelsi"),
-            new Nom("ALI BEN SALAH")
-        );
+        List<Nom> resultats = moteur.rechercher(nomRecherche, liste);
 
-        List<Nom> liste2 = List.of(
-            new Nom("Ali ben salah"),
-            new Nom("Zahra Bou Zid"),
-            new Nom("Omar Jendoubi")
-        );
-
-       
-        Nom nomRecherche = new Nom("Ali Ben Salah");
-        List<Nom> resultatsRecherche = moteur.rechercher(nomRecherche, liste1);
-        System.out.println(" Résultats '" + nomRecherche.getNom() + "' :");
-        for (Nom n : resultatsRecherche) {
-            System.out.println(" - " + n.getNom());
-        }
-
-        List<Nom> listeDedoublonnee = moteur.dedupliquer(liste1);
-        System.out.println(" Liste après déduplication :");
-        for (Nom n : listeDedoublonnee) {
-            System.out.println(" - " + n.getNom());
-        }
-
-        List<Nom> correspondances = moteur.comparerListes(liste1, liste2);
-        System.out.println(" Liste de Correspondances :");
-        for (String c : correspondances) {
-            System.out.println(" - " + c);
+        System.out.println("Résultats pour la recherche de '" + nomRecherche.getNom() + "' :");
+        for (Nom resultat : resultats) {
+            System.out.println(" - " + resultat.getNom());
         }
     }
 }
