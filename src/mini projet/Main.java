@@ -7,7 +7,7 @@ public class Main {
         MoteurDeRecherche moteur = new MoteurDeRecherche(
             new CleanName(),
             new Generateurbasesurlongueur(),
-            new ComparateurExact(),
+            new ComparateurExacte(),
             new SelectionneurAvecSeuil(1.0)
         );
 
@@ -28,7 +28,7 @@ public class Main {
        
         Nom nomRecherche = new Nom("Ali Ben Salah");
         List<Nom> resultatsRecherche = moteur.rechercher(nomRecherche, liste1);
-        System.out.println("\n Résultats '" + nomRecherche.getNom() + "' :");
+        System.out.println(" Résultats '" + nomRecherche.getNom() + "' :");
         for (Nom n : resultatsRecherche) {
             System.out.println(" - " + n.getNom());
         }
@@ -40,7 +40,7 @@ public class Main {
         }
 
         List<Nom> correspondances = moteur.comparerListes(liste1, liste2);
-        System.out.println("\n Liste de Correspondances :");
+        System.out.println(" Liste de Correspondances :");
         for (String c : correspondances) {
             System.out.println(" - " + c);
         }
