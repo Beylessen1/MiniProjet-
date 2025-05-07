@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.text.Normalizer;
 //removes uppercase and removes special caracters
-public class CleanName implements Praitraiteur{
+public class CleanName implements Pretraiteur{
 
     public List<Nom> traiter(List<Nom> noms){
         List<Nom> liste_noms_traitee = new ArrayList<>();
