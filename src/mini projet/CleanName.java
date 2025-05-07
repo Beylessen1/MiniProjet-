@@ -9,11 +9,11 @@ public class CleanName implements Praitraiteur{
     public List<Nom> traiter(List<Nom> noms){
         List<Nom> liste_noms_traitee = new ArrayList<>();
         for (Nom nom : noms) {
-            String valeur = nom.getValeur();
+            String valeur = nom.getNom();
             String normalized = Normalizer.normalize(valeur, Normalizer.Form.NFD)
                                           .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
             String cleaned = normalized.replaceAll("[A-Z\\W_]", "");
-            nom.setValeur(cleaned);
+            nom.setNom(cleaned);
             liste_noms_traitee.add(nom);
         }
         
