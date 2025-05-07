@@ -5,20 +5,20 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Nom> liste = List.of(
-            new Nom("Ahmed"),
-            new Nom("Ahmad"),
-            new Nom("Ahmet"),
-            new Nom("Hamed"),
-            new Nom("Mohamed"),
-            new Nom("Aymen")
+            new Nom("Ahmed", 15),
+            new Nom("Ahmad", 2),
+            new Nom("Ahmet", 20),
+            new Nom("Hamed", 500),
+            new Nom("Mohamed", 4),
+            new Nom("Aymen" , 30)
         );
-        Nom nomRecherche = new Nom("Ahmad");
-
-        Praitraiteur nettoyeur = new CleanName();
+        Nom nomRecherche = new Nom("ahmed", 2);
+       
+        Pretraiteur nettoyeur = new CleanName();
         GenerateurDeCandidats generateur = new Generateurbasesurlongeur();
-        ComparateurDeNom comparateur = new ComparateurExacte();  // fixed spelling
-        Selectionneur selectionneur = new SelectionneurAvecSeuil(0.8);
-
+        ComparateurDeNom comparateur = new ComparateurExacte(); 
+        //Selectionneur selectionneur = new SelectionneurAvecSeuil(0.8);
+        Selectionneur selectionneur = new Selectionneurrienfaire();
         MoteurDeRecherche moteur = new MoteurDeRecherche(
             nettoyeur,
             generateur,

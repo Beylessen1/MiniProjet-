@@ -1,5 +1,6 @@
 package miniprojet;
 
+
 import java.util.List;
 import java.util.ArrayList;
 public class SelectionneurAvecSeuil  implements Selectionneur {
@@ -10,8 +11,8 @@ public class SelectionneurAvecSeuil  implements Selectionneur {
   public List <Nom> est_acceptable (List<CoupleDeNomAvecScore> liste){
       List<Nom> list_select = new ArrayList<>();
       for (CoupleDeNomAvecScore cnas : liste){
-       if (cnas.getScore() >= seuil){
-         list_select.add(cnas.getNom());
+       if (cnas.score() >= seuil){
+         list_select.add(cnas.nom2());
        }
       }
       return list_select;

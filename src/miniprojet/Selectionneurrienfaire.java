@@ -5,7 +5,7 @@ public class Selectionneurrienfaire implements Selectionneur {
   public List <Nom> est_acceptable (List<CoupleDeNomAvecScore> liste){
     List<Nom> result = new ArrayList<>();
         for (CoupleDeNomAvecScore cnas : liste) {
-            result.add(cnas.getNom2());
+            result.add(cnas.nom2());
         }
         return result;
   }

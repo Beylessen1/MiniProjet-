@@ -1,43 +1,33 @@
 package miniprojet;
 
 public class Nom {
-	public String nomDeFamille;
-	public String prenom;
-	public final int id;
+	private String nom;
+	
+	private final int id;
 	
 
-	public Nom (String nomDeFamille,String prenom, int id) {
-		this.nomDefamille=nomDeFamille;
-		this.prenom=prenom;
+	public Nom (String nom, int id) {
+		this.nom=nom;
 		this.id=id;
 	}
-	public String getNomDeFamille() {
+	public String getNom() {
 		return nom;
 	}
-	public String getPrenom() {
-        return prenom;
-        }
-	public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    	
-	}
-	public void getNom(){
-		return(nomDeFamille + "  " + prenom );
+
+	
+	public String setNom(String nom) {
+		return(this.nom=nom);
+		
 	}
 	
 	
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+	
 
 	public int getId() {
 		return id;
 	}
-	public String toString() {
-        return "Nom{" +"nom='" + nom + '  ' +", prenom='" + prenom + '  ' +", id=" + id +'}';
-    	}
-	
+
 	
 
 }
