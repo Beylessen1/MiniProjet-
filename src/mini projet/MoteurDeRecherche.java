@@ -1,79 +1,49 @@
 package miniprojet;
-import java.util.* ;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoteurDeRecherche {
-    private final CleanName pretraitement;
-    private final GenerateurDeCandidat generateur;
+
+    private final Pretraiteur pretraiteur;
+    private final GenerateurDeCandidats generateur;
     private final ComparateurDeNom comparateur;
     private final Selectionneur selectionneur;
-    public MoteurDeRecherche(
-        CleanName pretraitement,
-        GenerateurDeCandidat generateur,
-        ComparateurDeNom comparateur,
-        Selectionneur selectionneur
-    ) {
-        this.pretraitement = pretraitement;
+
+    public MoteurDeRecherche(Praitraiteur pretraiteur,
+                             GenerateurDeCandidats generateur,
+                             ComparateurDeNom comparateur,
+                             Selectionneur selectionneur) {
+        this.pretraiteur = pretraiteur;
         this.generateur = generateur;
         this.comparateur = comparateur;
         this.selectionneur = selectionneur;
     }
-     public List<Nom> rechercher(Nom nomRecherche, List<String> liste) {
-        List<Nom> nomRechercheTraite = pretraitement.traiter(Collections.singletonList(nomRecherche));
-        List<Nom> listePretraitee = pretraitement.traiter(liste);
-        List<Nom> candidats = generateur.generer(nomRechercheTraite.get(0), listePretraitee);
-        List<CoupleDeNomAvecScore> scores = new ArrayList<>();
+
+    public List<Nom> rechercher(Nom nomRecherche, List<Nom> liste) {
+        if (nomRecherche == null || liste == null || liste.isEmpty()) {
+            return List.of();  
+        }
+        List<Nom> listeNettoyee = nettoyerListe(liste);
+        List<Nom> candidats = generateur.generer(nomRecherche, listeNettoyee);
+        List<CoupleDeNomAvecScore> couples = comparer(nomRecherche, candidats);
+        return selectionneur.selectionner(couples);
+    }
+
+    private List<Nom> nettoyerListe(List<Nom> liste) {
+        List<Nom> nettoyee = new ArrayList<>();
+        for (Nom nom : liste) {
+            nettoyee.add(praitraiteur.traiter(nom));
+        }
+        return nettoyee;
+    }
+
+    private List<CoupleDeNomAvecScore> comparer(Nom nomRecherche, List<Nom> candidats) {
+        List<CoupleDeNomAvecScore> couples = new ArrayList<>();
         for (Nom candidat : candidats) {
-            double score = comparateur.Comparer(nomRechercheTraite.get(0), candidat);
-            scores.add(new CoupleDeNomAvecScore(candidat, score));
+            double score = comparateur.comparer(nomRecherche, candidat);
+            couples.add(new CoupleDeNomAvecScore(nomRecherche, candidat, score));
         }
-        List<Nom> selection = selectionneur.est_acceptable(scores);
-        return selection;
+        return couples;
     }
-
-    public List<Nom> comparerListes(List<Nom> liste1, List<Nom> liste2) {
-        
-        List<String> correspondances = new ArrayList<>();
-
-        for (Nom n1 : pretraitee1) {
-            List<Nom> candidats = generateur.generer(n1, pretraitee2);
-            List<CoupleDeNomAvecScore> scores = new ArrayList<>();
-
-            for (Nom n2 : candidats) {
-                double score = comparateur.Comparer(n1, n2);
-                scores.add(new CoupleDeNomAvecScore(n2, score));
-            }
-
-            List<Nom> matches = selectionneur.est_acceptable(scores);
-            for (Nom match : matches) {
-                correspondances.add(n1.getNom() + "    " + match.getNom());
-            }
-        }
-
-        return correspondances;
-    }
-
-    public List<Nom> dedupliquer(List<Nom> liste) {
-        Set<Nom> uniques = new LinkedHashSet<>();
-
-        for (Nom nom : pretraitee) {
-            boolean isDuplicate = false;
-
-            for (Nom existant : uniques) {
-                double score = comparateur.Comparer(nom, existant);
-                if (selectionneur.est_acceptable(
-                    Collections.singletonList(new CoupleDeNomAvecScore(existant, score))
-                ).size() > 0) {
-                    isDuplicate = true;
-                    break;
-                }
-            }
-
-            if (!isDuplicate) {
-                uniques.add(nom);
-            }
-        }
-
-        return new ArrayList<>(uniques);
-    }
-}
 }
