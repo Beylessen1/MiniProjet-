@@ -14,7 +14,9 @@ public class SelectionneurAvecSeuil  implements Selectionneur {
          list_select.add(cnas.getNom());
        }
       }
+      return list_select;
   }
+  
         
                    
 }
