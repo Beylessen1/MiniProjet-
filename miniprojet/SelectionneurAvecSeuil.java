@@ -1,0 +1,23 @@
+package miniprojet;
+
+import java.util.List;
+import java.util.ArrayList;
+public class SelectionneurAvecSeuil  implements Selectionneur {
+  public double seuil ;
+  public SelectionneurAvecSeuil(double seuil) {
+        this.seuil = seuil;
+    }
+  public List <Nom> est_acceptable (List<CoupleDeNomAvecScore> liste){
+      List<Nom> list_select = new ArrayList<>();
+      for (CoupleDeNomAvecScore cnas : liste){
+       if (cnas.getScore() >= seuil){
+         list_select.add(cnas.getNom());
+       }
+      }
+      return list_select;
+  }
+  
+        
+                   
+}
+ //seuil double compare
