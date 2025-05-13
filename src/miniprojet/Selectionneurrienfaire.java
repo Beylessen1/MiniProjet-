@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 public class Selectionneurrienfaire implements Selectionneur {
   public List <CoupleDeNomAvecScore> est_acceptable (List<CoupleDeNomAvecScore> liste){
-    List<Nom> result = new ArrayList<>();
+    List<CoupleDeNomAvecScore> result = new ArrayList<>();
         for (CoupleDeNomAvecScore cnas : liste) {
             result.add(cnas.nom2());
         }
