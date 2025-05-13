@@ -3,28 +3,27 @@ package miniprojet;
 public class Nom {
 	private String nom;
 	
-	private final int id;
+	private final String id;
 	
 
-	public Nom (String nom, int id) {
+	public Nom (String id, String nom) {
 		this.nom=nom;
 		this.id=id;
+	}
+	public Nom (String nom) {
+		this.nom=nom;
+		
 	}
 	public String getNom() {
 		return nom;
 	}
-
 	
 	public String setNom(String nom) {
 		return(this.nom=nom);
 		
 	}
-	
-	
 
-	
-
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
