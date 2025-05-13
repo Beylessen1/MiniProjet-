@@ -2,7 +2,7 @@ package miniprojet;
 import java.util.List;
 import java.util.ArrayList;
 public class Generateurbasesurlongeur implements GenerateurDeCandidats {
-    public List<Nom> genererCandidats(Nom nom, List<Nom> liste1) {
+    public List<CoupleDeNom> genererCandidats(Nom nom, List<Nom> liste1) {
         int longueur = nom.getNom().length();
         List<Nom> liste_candidats = new ArrayList<>();
         for (Nom i : liste1) {
