@@ -5,14 +5,14 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Nom> liste = List.of(
-            new Nom("Ahmed", 15),
-            new Nom("Ahmad", 2),
-            new Nom("Ahmet", 20),
-            new Nom("Hamed", 500),
-            new Nom("Mohamed", 4),
-            new Nom("Aymen" , 30)
+            new Nom("ds", "Ahmed"),
+            new Nom("dm","Ahmad"),
+            new Nom("gh","Ahmet"),
+            new Nom("nl","Hamed"),
+            new Nom("mn","Mohamed"),
+            new Nom("kl","Aymen")
         );
-        Nom nomRecherche = new Nom("ahmed", 2);
+        Nom nomRecherche = new Nom("ahmed");
        
         Pretraiteur nettoyeur = new CleanName();
         GenerateurDeCandidats generateur = new Generateurbasesurlongeur();
