@@ -2,7 +2,7 @@ package miniprojet;
 import java.util.List;
 import java.util.ArrayList;
 public class Selectionneurrienfaire implements Selectionneur {
-  public List <Nom> est_acceptable (List<CoupleDeNomAvecScore> liste){
+  public List <CoupleDeNomAvecScore> est_acceptable (List<CoupleDeNomAvecScore> liste){
     List<Nom> result = new ArrayList<>();
         for (CoupleDeNomAvecScore cnas : liste) {
             result.add(cnas.nom2());
