@@ -1,7 +1,6 @@
-package miniprojet;
-import java.util.*;
+import java.util.List;
 
 public interface Pretraiteur {
-    public List<Nom> traiter (List <Nom> noms);
+    List<Nom> traiter(List<Nom> noms);
 }
 
